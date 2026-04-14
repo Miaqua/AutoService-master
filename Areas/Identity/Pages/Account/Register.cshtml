@@ -1,0 +1,57 @@
+﻿@page
+@model RegisterModel
+
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">📝 Регистрация</h1>
+        <p class="page-subtitle">Создайте новый аккаунт</p>
+    </div>
+
+    <div class="form-card mx-auto" style="max-width: 400px;">
+        <form method="post" asp-route-returnUrl="@Model.ReturnUrl" class="styled-form" novalidate>
+            <div asp-validation-summary="ModelOnly" class="validation-summary mb-3 text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Input.FullName">Имя и Фамилия</label>
+                <input asp-for="Input.FullName" class="input-text" autocomplete="name" />
+                <span asp-validation-for="Input.FullName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Phone">Телефон</label>
+                <input asp-for="Input.Phone" class="input-text" autocomplete="tel" placeholder="+7 (999) 999-99-99" />
+                <span asp-validation-for="Input.Phone" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Email">Email</label>
+                <input asp-for="Input.Email" class="input-text" autocomplete="username" placeholder="example@mail.com" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Password">Пароль</label>
+                <input asp-for="Input.Password" type="password" class="input-text" autocomplete="new-password" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.ConfirmPassword">Подтвердите пароль</label>
+                <input asp-for="Input.ConfirmPassword" type="password" class="input-text" autocomplete="new-password" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="form-actions mt-4">
+                <button type="submit" class="btn-primary w-100">Зарегистрироваться</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

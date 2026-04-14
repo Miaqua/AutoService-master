@@ -1,0 +1,50 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Вход";
+}
+
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">🔑 Вход в аккаунт</h1>
+        <p class="page-subtitle">Введите свои данные для входа</p>
+    </div>
+
+    <div class="form-card mx-auto" style="max-width: 400px;">
+        <form method="post" class="styled-form" novalidate>
+            <div asp-validation-summary="ModelOnly" class="validation-summary mb-3 text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Input.Email">Email</label>
+                <input asp-for="Input.Email" class="input-text" autocomplete="username" placeholder="example@mail.com" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Password">Пароль</label>
+                <input asp-for="Input.Password" type="password" class="input-text" autocomplete="current-password" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group checkbox">
+                <label class="form-check-label">
+                    <input asp-for="Input.RememberMe" class="form-check-input" />
+                    Запомнить меня
+                </label>
+            </div>
+
+            <div class="form-actions mt-4">
+                <button type="submit" class="btn-primary w-100">Войти</button>
+            </div>
+
+            <div class="mt-3 text-center">
+                <p><a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Регистрация нового пользователя</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
