@@ -1,0 +1,62 @@
+@page
+@model RazorCrudAppAuth.Pages.RepairRequests.IndexModel
+@{
+    ViewData["Title"] = "Заявки на ремонт";
+}
+
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">🔧 Заявки на ремонт</h1>
+        <p class="page-subtitle">Просмотр и управление всеми заявками клиентов</p>
+        
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a asp-page="Create" class="btn-primary">➕ Создать заявку</a>
+        }
+        else
+        {
+            <a asp-area="Identity" asp-page="/Account/Login" class="btn-primary">Сначала авторизируйтесь</a>
+        }
+    </div>
+
+    @if (Model.RepairRequest == null || !Model.RepairRequest.Any())
+    {
+        <div class="empty-state">
+            <div class="empty-icon">🧰</div>
+            <h3>Пока нет заявок</h3>
+            <p>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <text>Создайте новую заявку, чтобы начать работу.</text>
+                }
+                else
+                {
+                    <text>Войдите в систему, чтобы создать заявку.</text>
+                }
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="promotions-grid">
+            @foreach (var item in Model.RepairRequest)
+            {
+                <div class="promotion-card">
+                    <h3 class="promotion-title">@item.CustomerName</h3>
+                    <p class="promotion-description">📞 @item.PhoneNumber</p>
+
+                    <div class="promotion-dates">
+                        <span>Дата: <strong>@item.PreferredDate.ToString("dd.MM.yyyy")</strong></span>
+                        <span>Статус: <strong>@item.Status</strong></span>
+                        <span>Услуга: <strong>@item.Service?.Title</strong></span>
+                        <span>Пользователь: <strong>@item.User?.UserName</strong></span>
+                    </div>
+
+                    <div class="promotion-actions">
+                            <a asp-page="./Details" asp-route-id="@item.Id" class="btn-outline">🔍 Подробнее</a>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

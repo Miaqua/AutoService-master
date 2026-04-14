@@ -1,0 +1,53 @@
+﻿@page
+@model RazorCrudAppAuth.Pages.Reviews.EditModel
+
+@{
+    ViewData["Title"] = "Редактирование отзыва";
+}
+
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">✏️ Редактировать отзыв</h1>
+        <p class="page-subtitle">Измените содержимое отзыва</p>
+    </div>
+
+    <div class="form-card mx-auto" style="max-width: 600px;">
+        <form method="post" class="styled-form">
+            <div asp-validation-summary="ModelOnly" class="validation-summary mb-3"></div>
+
+            <input type="hidden" asp-for="Review.Id" />
+
+            <input type="hidden" asp-for="Review.UserId" />
+
+            <div class="form-group">
+                <label asp-for="Review.Text">Текст отзыва</label>
+                <input asp-for="Review.Text" class="input-text" />
+                <span asp-validation-for="Review.Text" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Review.Rating">Оценка (1–5)</label>
+                <input asp-for="Review.Rating" type="number" min="1" max="5" class="input-text" />
+                <span asp-validation-for="Review.Rating" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Review.CreatedAt">Дата создания</label>
+                <input asp-for="Review.CreatedAt" type="datetime-local" class="input-text" />
+                <span asp-validation-for="Review.CreatedAt" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-actions mt-4">
+                <button type="submit" class="btn-primary w-100">Сохранить</button>
+                <a asp-page="./Index" class="btn-outline mt-2 d-block text-center">↩ Назад к списку</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

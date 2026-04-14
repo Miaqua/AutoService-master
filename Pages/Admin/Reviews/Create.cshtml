@@ -1,0 +1,63 @@
+﻿@page
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles = "Admin")]
+@model RazorCrudAppAuth.Pages.Admin.Reviews.CreateModel
+
+@{
+    ViewData["Title"] = "Создание отзыва";
+}
+
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">💬 Создание отзыва</h1>
+        <p class="page-subtitle">Добавьте новый отзыв от пользователя</p>
+    </div>
+
+    <div class="form-card">
+        <form method="post" class="form-styled">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Review.Text" class="form-label">Текст отзыва</label>
+                <textarea asp-for="Review.Text" class="form-control" rows="4" placeholder="Введите отзыв..."></textarea>
+                <span asp-validation-for="Review.Text" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Review.Rating" class="form-label">Оценка (1–5)</label>
+                <input asp-for="Review.Rating" type="number" min="1" max="5" class="form-control" />
+                <span asp-validation-for="Review.Rating" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Review.CreatedAt" class="form-label">Дата создания</label>
+                <input asp-for="Review.CreatedAt" type="datetime-local" class="form-control" />
+                <span asp-validation-for="Review.CreatedAt" class="text-danger"></span>
+            </div>
+
+            <div class="form-check-group">
+                <input asp-for="Review.IsApproved" class="form-check-input" />
+                <label asp-for="Review.IsApproved" class="form-check-label">Одобрен</label>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Review.UserId" class="form-label">Пользователь</label>
+                <select asp-for="Review.UserId" class="form-control" asp-items="ViewBag.UserId">
+                    <option value="">-- Выберите пользователя --</option>
+                </select>
+                <span asp-validation-for="Review.UserId" class="text-danger"></span>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">💾 Создать</button>
+                <a asp-page="Index" class="btn-outline">↩️ Назад к списку</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

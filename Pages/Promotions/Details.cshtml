@@ -1,0 +1,26 @@
+﻿@page
+@model RazorCrudAppAuth.Pages.Promotions.DetailsModel
+@{
+    ViewData["Title"] = "Детали акции";
+}
+
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">🎁 Детали акции</h1>
+        <p class="page-subtitle">Подробная информация об акции</p>
+    </div>
+
+    <div class="details-card">
+        <h2 class="details-title">@Model.Promotion.Title</h2>
+        <p class="details-description">@Model.Promotion.Description</p>
+
+        <div class="details-info">
+            <div><strong>📅 Дата начала:</strong> @Model.Promotion.StartDate.ToString("dd.MM.yyyy")</div>
+            <div><strong>⏰ Дата окончания:</strong> @Model.Promotion.EndDate.ToString("dd.MM.yyyy")</div>
+        </div>
+
+        <div class="details-actions">
+            <a asp-page="./Index" class="btn-outline">⬅️ Назад к списку</a>
+        </div>
+    </div>
+</div>

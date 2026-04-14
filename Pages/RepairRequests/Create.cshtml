@@ -1,0 +1,57 @@
+﻿@page
+@model RazorCrudAppAuth.Pages.RepairRequests.CreateModel
+
+@{
+    ViewData["Title"] = "Создание заявки";
+}
+
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">📝 Создать заявку</h1>
+        <p class="page-subtitle">Заполните форму для отправки новой заявки на ремонт</p>
+    </div>
+
+    <div class="form-card mx-auto" style="max-width: 600px;">
+        <form method="post" class="styled-form">
+
+            <div asp-validation-summary="ModelOnly" class="validation-summary mb-3"></div>
+
+            <div class="form-group">
+                <label asp-for="RepairRequest.CustomerName">Имя клиента</label>
+                <input asp-for="RepairRequest.CustomerName" class="input-text" />
+                <span asp-validation-for="RepairRequest.CustomerName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="RepairRequest.PhoneNumber">Номер телефона</label>
+                <input asp-for="RepairRequest.PhoneNumber" class="input-text" />
+                <span asp-validation-for="RepairRequest.PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="RepairRequest.PreferredDate">Желаемая дата</label>
+                <input asp-for="RepairRequest.PreferredDate" type="date" class="input-text" />
+                <span asp-validation-for="RepairRequest.PreferredDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="RepairRequest.ServiceId">Услуга</label>
+                <select asp-for="RepairRequest.ServiceId" class="input-select" asp-items="ViewBag.ServiceId"></select>
+            </div>
+
+            <div class="form-actions mt-4">
+                <button type="submit" class="btn-primary w-100">🚀 Отправить заявку</button>
+            </div>
+        </form>
+
+        <div class="text-center mt-3">
+            <a asp-page="Index" class="btn-outline">↩ Назад к списку</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,68 @@
+@page
+@model RazorCrudAppAuth.Pages.Reviews.IndexModel
+@{
+    ViewData["Title"] = "Отзывы клиентов";
+}
+
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">💬 Отзывы клиентов</h1>
+        <p class="page-subtitle">Управление обратной связью и рейтингами</p>
+        
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a asp-page="Create" class="btn-primary">➕ Добавить отзыв</a>
+        }
+        else
+        {
+            <a asp-area="Identity" asp-page="/Account/Login" class="btn-primary">Авторизируйтесь</a>
+        }
+    </div>
+
+    @if (Model.Review == null || !Model.Review.Any())
+    {
+        <div class="empty-state">
+            <div class="empty-icon">🗣️</div>
+            <h3>Отзывов пока нет</h3>
+            <p>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <text>Будьте первым, кто оставит отзыв!</text>
+                }
+                else
+                {
+                    <text>Войдите в систему, чтобы оставить отзыв!</text>
+                }
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="promotions-grid">
+            @foreach (var item in Model.Review)
+            {
+                <div class="promotion-card">
+                    <h3 class="promotion-title">⭐ Рейтинг: @item.Rating/5</h3>
+                    <p class="promotion-description">«@item.Text»</p>
+
+                    <div class="promotion-dates">
+                        <span>Дата: <strong>@item.CreatedAt.ToString("dd.MM.yyyy")</strong></span>
+                        <span>Статус: @(item.IsApproved ? "✅ Одобрен" : "⏳ На проверке")</span>
+                        <span>Пользователь: <strong>@item.User?.UserName</strong></span>
+                    </div>
+
+                    <div class="promotion-actions">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a asp-page="./Details" asp-route-id="@item.Id" class="btn-outline">🔍 Подробнее</a>
+                        }
+                        else
+                        {
+                            <a asp-area="Identity" asp-page="/Account/Login" class="btn-outline">🔍 Подробнее</a>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

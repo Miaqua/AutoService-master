@@ -1,0 +1,40 @@
+﻿@page
+@model RazorCrudAppAuth.Pages.Services.IndexModel
+@{
+    ViewData["Title"] = "Услуги";
+}
+
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">🧾 Услуги</h1>
+        <p class="page-subtitle">Доступные сервисы и стоимость</p>
+    </div>
+
+    @if (Model.Service == null || !Model.Service.Any())
+    {
+        <div class="empty-state">
+            <div class="empty-icon">💼</div>
+            <h3>Пока нет услуг</h3>
+            <p>Добавьте первую услугу для отображения на сайте.</p>
+        </div>
+    }
+    else
+    {
+        <div class="promotions-grid">
+            @foreach (var item in Model.Service)
+            {
+                <div class="promotion-card">
+                    <h3 class="promotion-title">@item.Title</h3>
+                    <p class="promotion-description">@item.Description</p>
+                    <div class="promotion-dates">
+                        <span>💰 Цена: <strong>@item.Price.ToString("C0")</strong></span>
+                    </div>
+
+                    <div class="promotion-actions">
+                        <a asp-page="./Details" asp-route-id="@item.Id" class="btn-outline">🔍 Подробнее</a>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

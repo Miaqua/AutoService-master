@@ -1,0 +1,33 @@
+﻿@page
+@model RazorCrudAppAuth.Pages.Admin.Contacts.DetailsModel
+
+@{
+    ViewData["Title"] = "Детали контакта";
+}
+
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">ℹ️ Детали контакта</h1>
+    </div>
+
+    <div class="card mx-auto p-4" style="max-width: 600px;">
+        <dl class="row mb-0">
+            <dt class="col-sm-4">Адрес</dt>
+            <dd class="col-sm-8">@Model.Contact.Address</dd>
+
+            <dt class="col-sm-4">Телефон</dt>
+            <dd class="col-sm-8">@Model.Contact.Phone</dd>
+
+            <dt class="col-sm-4">Email</dt>
+            <dd class="col-sm-8">@Model.Contact.Email</dd>
+
+            <dt class="col-sm-4">Время работы</dt>
+            <dd class="col-sm-8">@Model.Contact.WorkingHours</dd>
+        </dl>
+    </div>
+
+    <div class="mt-4">
+        <a asp-page="./Edit" asp-route-id="@Model.Contact.Id" class="btn-primary me-2">Редактировать</a>
+        <a asp-page="./Index" class="btn-outline">Назад к списку</a>
+    </div>
+</div>

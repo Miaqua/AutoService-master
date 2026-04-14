@@ -1,0 +1,56 @@
+﻿@page
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles = "Admin")]
+@model RazorCrudAppAuth.Pages.Admin.Promotions.IndexModel
+@{
+    ViewData["Title"] = "Акции и предложения";
+}
+
+<div class="promotions-page">
+    <div class="page-header">
+        <h1 class="page-title">🎉 Акции и предложения</h1>
+        <p class="page-subtitle">Актуальные скидки и специальные предложения для наших клиентов</p>
+        <a asp-page="./Create" class="btn-primary">➕ Добавить акцию</a>
+    </div>
+
+    @if (Model.Promotion == null || !Model.Promotion.Any())
+    {
+        <div class="empty-state">
+            <div class="empty-icon">🛍️</div>
+            <h3>Акций пока нет</h3>
+            <p>Загляните позже — скоро появятся новые предложения!</p>
+        </div>
+    }
+    else
+    {
+        <div class="promotions-grid">
+            @foreach (var item in Model.Promotion)
+            {
+                <div class="promotion-card">
+                    <div class="promotion-header">
+                        <h3 class="promotion-title">@item.Title</h3>
+                    </div>
+
+                    <p class="promotion-description">@item.Description</p>
+
+                    <div class="promotion-dates">
+                        <span>📅 Начало: <strong>@item.StartDate.ToString("dd.MM.yyyy")</strong></span>
+                        <span>🏁 Конец: <strong>@item.EndDate.ToString("dd.MM.yyyy")</strong></span>
+                    </div>
+
+                    <div class="promotion-actions">
+                        <a asp-page="./Edit" asp-route-id="@item.Id" class="btn-secondary">✏️ Редактировать</a>
+                        <a asp-page="./Details" asp-route-id="@item.Id" class="btn-outline">🔍 Подробнее</a>
+                        <a asp-page="./Delete" asp-route-id="@item.Id" class="btn-danger">🗑 Удалить</a>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

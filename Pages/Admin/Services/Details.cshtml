@@ -1,0 +1,32 @@
+﻿@page
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles = "Admin")]
+@model RazorCrudAppAuth.Pages.Admin.Services.DetailsModel
+@{
+    ViewData["Title"] = "Детали услуги";
+}
+
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">💼 Детали услуги</h1>
+        <p class="page-subtitle">Информация о выбранной услуге</p>
+    </div>
+
+    <div class="details-card">
+        <dl>
+            <dt>Название:</dt>
+            <dd>@Model.Service.Title</dd>
+
+            <dt>Описание:</dt>
+            <dd>@Model.Service.Description</dd>
+
+            <dt>Цена:</dt>
+            <dd>@Model.Service.Price.ToString("C")</dd>
+        </dl>
+    </div>
+
+    <div class="details-actions">
+        <a asp-page="./Edit" asp-route-id="@Model.Service.Id" class="btn-secondary">✏️ Редактировать</a>
+        <a asp-page="./Index" class="btn-outline">⬅️ Назад к списку</a>
+    </div>
+</div>

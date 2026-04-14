@@ -1,0 +1,57 @@
+﻿@page
+@model RazorCrudAppAuth.Pages.Admin.Contacts.CreateModel
+
+@{
+    ViewData["Title"] = "Создание контакта";
+}
+
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">➕ Создать контакт</h1>
+        <p class="page-subtitle">Добавьте новый контакт</p>
+    </div>
+
+    <div class="form-card mx-auto" style="max-width: 500px;">
+        <form method="post" class="styled-form" novalidate>
+            <div asp-validation-summary="ModelOnly" class="validation-summary mb-3"></div>
+
+            <div class="form-group">
+                <label asp-for="Contact.Address">Адрес</label>
+                <input asp-for="Contact.Address" class="input-text" />
+                <span asp-validation-for="Contact.Address" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Contact.Phone">Телефон</label>
+                <input asp-for="Contact.Phone" class="input-text" />
+                <span asp-validation-for="Contact.Phone" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Contact.Email">Email</label>
+                <input asp-for="Contact.Email" class="input-text" />
+                <span asp-validation-for="Contact.Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Contact.WorkingHours">Время работы</label>
+                <input asp-for="Contact.WorkingHours" class="input-text" />
+                <span asp-validation-for="Contact.WorkingHours" class="text-danger"></span>
+            </div>
+
+            <div class="form-actions mt-4">
+                <button type="submit" class="btn-primary w-100">Создать</button>
+            </div>
+        </form>
+
+        <div class="text-center mt-3">
+            <a asp-page="Index" class="btn-outline">← Назад к списку</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

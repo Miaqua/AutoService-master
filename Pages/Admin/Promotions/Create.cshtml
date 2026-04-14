@@ -1,0 +1,69 @@
+﻿@page
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles = "Admin")]
+@model RazorCrudAppAuth.Pages.Admin.Promotions.CreateModel
+@using Microsoft.AspNetCore.Authorization
+@{
+    ViewData["Title"] = "Создание акции";
+}
+
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">🎉 Добавить акцию</h1>
+        <p class="page-subtitle">Создайте новую акцию для клиентов</p>
+    </div>
+
+    @if (!User.IsInRole("Admin"))
+    {
+        <div class="empty-state">
+            <div class="empty-icon">🚫</div>
+            <h3>Доступ запрещён</h3>
+            <p>Эта страница доступна только администраторам.</p>
+            <a asp-page="/Index" class="btn-outline">🏠 На главную</a>
+        </div>
+    }
+    else
+    {
+        <div class="form-card">
+            <form method="post" class="styled-form">
+                <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+                <div class="form-group">
+                    <label asp-for="Promotion.Title">Название акции</label>
+                    <input asp-for="Promotion.Title" class="input-text" placeholder="Введите название..." />
+                    <span asp-validation-for="Promotion.Title" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Promotion.Description">Описание</label>
+                    <textarea asp-for="Promotion.Description" class="input-textarea" rows="3" placeholder="Опишите акцию..."></textarea>
+                    <span asp-validation-for="Promotion.Description" class="text-danger"></span>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label asp-for="Promotion.StartDate">Дата начала</label>
+                        <input asp-for="Promotion.StartDate" type="date" class="input-text" />
+                        <span asp-validation-for="Promotion.StartDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Promotion.EndDate">Дата окончания</label>
+                        <input asp-for="Promotion.EndDate" type="date" class="input-text" />
+                        <span asp-validation-for="Promotion.EndDate" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">💾 Создать</button>
+                    <a asp-page="./Index" class="btn-outline">↩ Назад к списку</a>
+                </div>
+            </form>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

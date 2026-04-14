@@ -1,0 +1,41 @@
+﻿@page
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles = "Admin")]
+@model RazorCrudAppAuth.Pages.Admin.RepairRequests.DetailsModel
+@{
+    ViewData["Title"] = "Детали заявки на ремонт";
+}
+
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">🔧 Детали заявки</h1>
+        <p class="page-subtitle">Просмотр информации о заявке клиента</p>
+    </div>
+
+    <div class="details-card">
+        <dl>
+            <dt>Имя клиента:</dt>
+            <dd>@Model.RepairRequest.CustomerName</dd>
+
+            <dt>Телефон:</dt>
+            <dd>@Model.RepairRequest.PhoneNumber</dd>
+
+            <dt>Предпочтительная дата:</dt>
+            <dd>@Model.RepairRequest.PreferredDate.ToString("dd.MM.yyyy")</dd>
+
+            <dt>Статус:</dt>
+            <dd>@Model.RepairRequest.Status</dd>
+
+            <dt>Услуга:</dt>
+            <dd>@Model.RepairRequest.Service?.Title</dd>
+
+            <dt>Пользователь:</dt>
+            <dd>@Model.RepairRequest.User?.UserName</dd>
+        </dl>
+    </div>
+
+    <div class="details-actions">
+        <a asp-page="./Edit" asp-route-id="@Model.RepairRequest.Id" class="btn-secondary">✏️ Редактировать</a>
+        <a asp-page="./Index" class="btn-outline">⬅️ Назад к списку</a>
+    </div>
+</div>

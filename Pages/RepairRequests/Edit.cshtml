@@ -1,0 +1,80 @@
+﻿@page
+@using Microsoft.AspNetCore.Authorization
+@using System.Security.Claims
+@attribute [Authorize]
+@model RazorCrudAppAuth.Pages.RepairRequests.EditModel
+
+@{
+    ViewData["Title"] = "Редактирование заявки";
+}
+
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">✏️ Редактировать заявку</h1>
+        <p class="page-subtitle">Измените данные вашей заявки</p>
+    </div>
+
+    @if (Model.AccessDenied)
+    {
+        <div class="empty-state">
+            <div class="empty-icon">🚫</div>
+            <h3>Доступ запрещён</h3>
+            <p>Вы можете редактировать только свои заявки.</p>
+            <a asp-page="/Index" class="btn-outline">🏠 На главную</a>
+        </div>
+    }
+    else
+    {
+        <div class="form-card">
+            <form method="post" class="styled-form">
+                <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+                <input type="hidden" asp-for="RepairRequest.Id" />
+
+                <div class="form-group">
+                    <label asp-for="RepairRequest.CustomerName">Имя клиента</label>
+                    <input asp-for="RepairRequest.CustomerName" class="input-text" />
+                    <span asp-validation-for="RepairRequest.CustomerName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="RepairRequest.PhoneNumber">Телефон</label>
+                    <input asp-for="RepairRequest.PhoneNumber" class="input-text" />
+                    <span asp-validation-for="RepairRequest.PhoneNumber" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="RepairRequest.PreferredDate">Желаемая дата</label>
+                    <input asp-for="RepairRequest.PreferredDate" type="date" class="input-text" />
+                    <span asp-validation-for="RepairRequest.PreferredDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="RepairRequest.Status">Статус</label>
+                    <input asp-for="RepairRequest.Status" class="input-text" />
+                    <span asp-validation-for="RepairRequest.Status" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="RepairRequest.ServiceId">Услуга</label>
+                    <select asp-for="RepairRequest.ServiceId" class="input-select" asp-items="ViewBag.ServiceId"></select>
+                    <span asp-validation-for="RepairRequest.ServiceId" class="text-danger"></span>
+                </div>
+
+                <!-- UserId выводим скрытым или readonly, чтобы пользователь не менял -->
+                <input type="hidden" asp-for="RepairRequest.UserId" />
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">💾 Сохранить</button>
+                    <a asp-page="./Index" class="btn-outline">↩ Назад</a>
+                </div>
+            </form>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,78 @@
+﻿@page
+@model RazorCrudAppAuth.Pages.Admin.IndexModel
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles = "Admin")]
+@{
+    ViewData["Title"] = "Админ-панель";
+}
+
+<div class="admin-dashboard container py-5">
+    <h1 class="text-center mb-5 fw-bold">Панель администратора</h1>
+
+    <div class="row g-4 justify-content-center">
+        <div class="col-md-4 col-lg-3">
+            <div class="card admin-card h-100 text-center shadow-sm border-0">
+                <div class="card-body">
+                    <div class="admin-icon mb-3">
+                        <i class="bi bi-tools fs-1 text-primary"></i>
+                    </div>
+                    <h5 class="card-title">Заявки на ремонт</h5>
+                    <p class="card-text text-muted">Просмотр и управление заявками пользователей.</p>
+                    <a asp-page="/Admin/RepairRequests/Index" class="btn btn-primary w-100">Перейти</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-3">
+            <div class="card admin-card h-100 text-center shadow-sm border-0">
+                <div class="card-body">
+                    <div class="admin-icon mb-3">
+                        <i class="bi bi-briefcase fs-1 text-success"></i>
+                    </div>
+                    <h5 class="card-title">Услуги</h5>
+                    <p class="card-text text-muted">Редактирование и добавление новых услуг.</p>
+                    <a asp-page="/Admin/Services/Index" class="btn btn-success w-100">Перейти</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-3">
+            <div class="card admin-card h-100 text-center shadow-sm border-0">
+                <div class="card-body">
+                    <div class="admin-icon mb-3">
+                        <i class="bi bi-chat-dots fs-1 text-info"></i>
+                    </div>
+                    <h5 class="card-title">Отзывы</h5>
+                    <p class="card-text text-muted">Модерация и удаление отзывов клиентов.</p>
+                    <a asp-page="/Admin/Reviews/Index" class="btn btn-info text-white w-100">Перейти</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-3">
+            <div class="card admin-card h-100 text-center shadow-sm border-0">
+                <div class="card-body">
+                    <div class="admin-icon mb-3">
+                        <i class="bi bi-people fs-1 text-warning"></i>
+                    </div>
+                    <h5 class="card-title">Контакты</h5>
+                    <p class="card-text text-muted">Связь с клиентами и контактная информация.</p>
+                    <a asp-page="/Admin/Contacts/Index" class="btn btn-warning w-100 text-white">Перейти</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-3">
+            <div class="card admin-card h-100 text-center shadow-sm border-0">
+                <div class="card-body">
+                    <div class="admin-icon mb-3">
+                        <i class="bi bi-megaphone fs-1 text-danger"></i>
+                    </div>
+                    <h5 class="card-title">Акции</h5>
+                    <p class="card-text text-muted">Управление акциями и рекламными предложениями.</p>
+                    <a asp-page="/Admin/Promotions/Index" class="btn btn-danger w-100">Перейти</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

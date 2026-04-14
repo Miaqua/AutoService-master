@@ -1,0 +1,132 @@
+﻿@page
+@model RazorCrudAppAuth.Pages.IndexModel
+@{
+    ViewData["Title"] = "Автосервис - Главная";
+}
+
+<div class="main-container">
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Автосервис</h1>
+                <p class="hero-subtitle">Профессиональный ремонт и обслуживание автомобилей с 2010 года</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">@Model.TotalReviews+</div>
+                        <div class="stat-label">Отзывов</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">@Model.TotalServices</div>
+                        <div class="stat-label">Услуг</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">@Model.ActivePromotions</div>
+                        <div class="stat-label">Активных акций</div>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="Services/Index" class="btn btn-primary">Наши услуги</a>
+                    <a href="#quick-access" class="btn btn-outline">Панель управления</a>
+                    <a asp-area="" asp-page="RepairRequests/Create" class="btn btn-accent">Записаться на ремонт</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="why-us-section">
+        <div class="container">
+            <div class="why-us-content">
+                <div class="why-us-text">
+                    <h2>Почему выбирают наш автосервис?</h2>
+                    <div class="advantages">
+                        <div class="advantage">
+                            <div class="advantage-icon">👨‍🔧</div>
+                            <div class="advantage-content">
+                                <h4>Опытные мастера</h4>
+                                <p>Наши специалисты имеют опыт работы от 5 лет и регулярно проходят обучение</p>
+                            </div>
+                        </div>
+                        <div class="advantage">
+                            <div class="advantage-icon">🔧</div>
+                            <div class="advantage-content">
+                                <h4>Оригинальные запчасти</h4>
+                                <p>Используем только качественные оригинальные и сертифицированные аналоги</p>
+                            </div>
+                        </div>
+                        <div class="advantage">
+                            <div class="advantage-icon">⚡</div>
+                            <div class="advantage-content">
+                                <h4>Быстрый ремонт</h4>
+                                <p>Большинство работ выполняем в день обращения. Срочный ремонт за 2 часа</p>
+                            </div>
+                        </div>
+                        <div class="advantage">
+                            <div class="advantage-icon">💎</div>
+                            <div class="advantage-content">
+                                <h4>Гарантия качества</h4>
+                                <p>Предоставляем гарантию до 1 года на все виды работ и установленные запчасти</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="why-us-image">
+                    <div class="image-placeholder">
+                        <span>Наш современный автосервис</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Access Panel -->
+    <section class="quick-access-section" id="quick-access">
+        <div class="container">
+            <h2 class="section-title">Панель быстрого доступа</h2>
+            <p class="section-subtitle">Управление всеми аспектами автосервиса</p>
+            <div class="access-grid">
+                
+                <div class="access-card">
+                    <div class="access-icon">🔧</div>
+                    <h3>Услуги и цены</h3>
+                    <p>Каталог услуг, прайс-лист, управление стоимостью работ</p>
+                    <a class="btn btn-access" asp-area="" asp-page="Services/Index">Перейти к услугам</a>
+                </div>
+                
+                <div class="access-card">
+                    <div class="access-icon">⭐</div>
+                    <h3>Отзывы клиентов</h3>
+                    <p>Просмотр и управление отзывами, репутация компании</p>
+                    <a class="btn btn-access" asp-area="" asp-page="Reviews/Index">Перейти к отзывам</a>
+                </div>
+                
+                <div class="access-card">
+                    <div class="access-icon">🎯</div>
+                    <h3>Акции и скидки</h3>
+                    <p>Создание и управление акциями, специальные предложения</p>
+                    <a class="btn btn-access" asp-area="" asp-page="Promotions/Index">Перейти к акциями</a>
+                </div>
+                
+                <div class="access-card">
+                    <div class="access-icon">📋</div>
+                    <h3>Заявки на ремонт</h3>
+                    <p>Обработка заявок, назначение мастеров, отслеживание статусов</p>
+                    <a class="btn btn-access" asp-area="" asp-page="RepairRequests/Index">Перейти к заявкам</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Готовы записаться на обслуживание?</h2>
+                <p>Оставьте заявку онлайн и получите скидку 10% на первую диагностику</p>
+                <div class="cta-buttons">
+                    <a asp-area="" asp-page="RepairRequests/Create" class="btn btn-primary btn-large">Оставить заявку</a>
+                    <a href="tel:+78001234567" class="btn btn-outline btn-large">+7 (800) 123-45-67</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

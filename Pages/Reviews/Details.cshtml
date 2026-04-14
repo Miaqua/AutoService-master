@@ -1,0 +1,35 @@
+﻿@page
+@model RazorCrudAppAuth.Pages.Reviews.DetailsModel
+@{
+    ViewData["Title"] = "Детали отзыва";
+}
+
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">💬 Детали отзыва</h1>
+        <p class="page-subtitle">Просмотр информации об отзыве пользователя</p>
+    </div>
+
+    <div class="details-card">
+        <dl>
+            <dt>Текст отзыва:</dt>
+            <dd>«@Model.Review.Text»</dd>
+
+            <dt>Рейтинг:</dt>
+            <dd>⭐ @Model.Review.Rating / 5</dd>
+
+            <dt>Дата создания:</dt>
+            <dd>@Model.Review.CreatedAt.ToString("dd.MM.yyyy HH:mm")</dd>
+
+            <dt>Статус:</dt>
+            <dd>@(Model.Review.IsApproved ? "✅ Одобрен" : "⏳ На проверке")</dd>
+
+            <dt>Пользователь:</dt>
+            <dd>@Model.Review.User?.UserName</dd>
+        </dl>
+    </div>
+
+    <div class="details-actions">
+        <a asp-page="./Index" class="btn-outline">⬅️ Назад к списку</a>
+    </div>
+</div>

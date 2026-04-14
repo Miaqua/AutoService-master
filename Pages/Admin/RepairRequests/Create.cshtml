@@ -1,0 +1,51 @@
+﻿@page
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles = "Admin")]
+@model RazorCrudAppAuth.Pages.Admin.RepairRequests.CreateModel
+
+@{
+    ViewData["Title"] = "Создание заявки";
+}
+
+<div class="form-container">
+    <h2 class="text-center mb-4">Создать заявку</h2>
+
+    <form method="post" class="card p-4 shadow-sm mx-auto" style="max-width: 600px;">
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="form-group mb-3">
+            <label asp-for="RepairRequest.CustomerName" class="form-label">Имя клиента</label>
+            <input asp-for="RepairRequest.CustomerName" class="form-control" />
+            <span asp-validation-for="RepairRequest.CustomerName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="RepairRequest.PhoneNumber" class="form-label">Номер телефона</label>
+            @* <input asp-for="RepairRequest.PhoneNumber" class="form-control" value="@Model.DefaultPhoneNumber" /> *@
+            <span asp-validation-for="RepairRequest.PhoneNumber" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="RepairRequest.PreferredDate" class="form-label">Желаемая дата</label>
+            <input asp-for="RepairRequest.PreferredDate" type="date" class="form-control" />
+            <span asp-validation-for="RepairRequest.PreferredDate" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="RepairRequest.ServiceId" class="form-label">Услуга</label>
+            <select asp-for="RepairRequest.ServiceId" class="form-select" asp-items="ViewBag.ServiceId"></select>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Отправить заявку</button>
+    </form>
+
+    <div class="text-center mt-3">
+        <a asp-page="Index" class="btn btn-link">Назад к списку</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
