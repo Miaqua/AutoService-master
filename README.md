@@ -1,6 +1,6 @@
 1. Клонировать репозиторий
 
-git clone https://github.com/mixaron/AutoService.git
+git clone https://github.com/Miaqua/AutoService.git
 cd AutoService
 
 2. Установить зависимости
